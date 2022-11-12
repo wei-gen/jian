@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.SimpleFormatter;
+
+
 @Controller
 @RequestMapping({"/tunan"})
 public class TunnanManagerController {
@@ -48,6 +53,10 @@ public class TunnanManagerController {
     @RequestMapping({"/save"})
     @ResponseBody
     public R save(Project project) {
+        SimpleDateFormat simpleFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if(project.getCreateTime() == null){
+            project.setCreateTime(simpleFormatter.format(new Date()));
+        }
         this.projectService.save(project);
         return R.SUCESS();
     }

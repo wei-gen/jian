@@ -31,12 +31,12 @@
             <p class="content_11">项目案例</p>
             <div class="content_12">
                 <#list list as row>
-                    <div style="width: 1000px;height: 50px;line-height: 50px;margin: auto;cursor:pointer;">
-                        <a href="${base}/businessDetail/${row.id}">
-                            <span style="padding-right: 50px">[项目公示]</span>
-                            <span style="text-align: left;">${row.title}</span>
-                            <span>${row.createTime}</span>
+                    <div style="width: 95%;height: 50px;line-height: 50px;margin: auto;cursor:pointer;text-align: left">
+                        <span style="width:10%;min-width:10%;padding-right: 50px">[项目公示]</span>
+                        <a style="width:70%;min-width:70%;text-align: left;display: inline-block;" href="${base}/businessDetail/${row.id}">
+                            ${row.title}
                         </a>
+                        <span style="width:20%;min-width:20%;">${row.createTime}</span>
                     </div>
                 </#list>
             </div>
