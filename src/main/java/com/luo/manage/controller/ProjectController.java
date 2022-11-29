@@ -1,5 +1,6 @@
 package com.luo.manage.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.luo.manage.base.LayerData;
 import com.luo.manage.base.R;
@@ -20,11 +21,11 @@ import java.util.logging.SimpleFormatter;
 
 @Controller
 @RequestMapping({"/tunan"})
-public class TunnanManagerController {
+public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-    public TunnanManagerController() {
+    public ProjectController() {
     }
 
     @GetMapping({"/list"})
@@ -39,9 +40,9 @@ public class TunnanManagerController {
 
     @RequestMapping({"/list"})
     @ResponseBody
-    public LayerData list(@RequestParam(value = "page",defaultValue = "1") Integer page,
-                          @RequestParam(value = "limit",defaultValue = "10") Integer limit) {
-        Page<Project> pages = new Page((long)page, (long)limit);
+    public LayerData list(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                          @RequestParam(value = "limit", defaultValue = "10") Integer limit) {
+        Page<Project> pages = new Page((long) page, (long) limit);
         Page<Project> page1 = this.projectService.page(pages);
         LayerData<Project> data = new LayerData();
         data.setData(page1.getRecords());
@@ -54,8 +55,13 @@ public class TunnanManagerController {
     @ResponseBody
     public R save(Project project) {
         SimpleDateFormat simpleFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        if(project.getCreateTime() == null){
+        if (project.getCreateTime() == null) {
             project.setCreateTime(simpleFormatter.format(new Date()));
+        }
+        if (StrUtil.isBlank(project.getTitle())
+                || StrUtil.isBlank(project.getName())
+                || StrUtil.isBlank(project.getUnit())) {
+            return R.FAIL("标题、项目名称、建设单位必须要填");
         }
         this.projectService.save(project);
         return R.SUCESS();
