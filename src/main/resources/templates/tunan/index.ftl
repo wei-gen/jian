@@ -14,14 +14,12 @@
 <div>
     <div class="top">
         <div class="top_left">
-<!--            <img width="70px" height="70px" src="../static/img/logo.jpg"/>-->
             <p>深圳图南环保技术有限公司</p>
         </div>
         <div class="top_middle">
             <a href="/index">首页</a>
             <a href="/intro">公司简介</a>
             <a href="/business">项目公示</a>
-<!--            <a href="/team">团队介绍</a>-->
             <a href="/contact">联系我们</a>
         </div>
         <div class="top_right">
@@ -32,10 +30,8 @@
     <div class="banner_box1 layui-carousel" id="test1">
         <div carousel-item="">
             <div style="background-image: url(../static/img/2020042109440615.jpg)">
-<!--                <img width="70px" height="70px" src="../static/img/2020042109440615.jpg"/>-->
             </div>
             <div style="background-image: url(../static/img/2020042109442635.jpg)">
-<!--                <img width="70px" height="70px" src="../static/img/2020042109442635.jpg"/>-->
             </div>
         </div>
     </div>
@@ -94,7 +90,6 @@
             <a class="bottom_t_a" href="${base}/index">首页</a>
             <a class="bottom_t_a" href="${base}/intro">公司简介</a>
             <a class="bottom_t_a" href="${base}/business">项目公示</a>
-<!--            <a class="bottom_t_a" href="/team">团队介绍</a>-->
             <a class="bottom_t_a" href="${base}/contact">联系我们</a>
             <a class="bottom_t_c"><img src="${base}/static/img/phone.png"/><p>13553992423</p></a>
         </div>

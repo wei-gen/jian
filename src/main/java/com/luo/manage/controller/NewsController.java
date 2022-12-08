@@ -2,6 +2,7 @@ package com.luo.manage.controller;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.luo.manage.base.LayerData;
 import com.luo.manage.base.R;
@@ -29,24 +30,26 @@ public class NewsController {
 
     @GetMapping({"/list"})
     public String list(Model model) {
-        return "/tunan/list";
+        return "/tunan/news/list";
     }
 
     @GetMapping({"/add"})
-    public String add(Model model) {
-        return "/tunan/add";
+    public String add(Model model,Long id) {
+        News news = this.newsService.getById(id);
+        model.addAttribute("bean",news);
+        return "/tunan/news/add";
     }
 
     @PostMapping({"/list"})
     @ResponseBody
     public LayerData list(@RequestParam(value = "page", defaultValue = "1") Integer page,
                           @RequestParam(value = "limit", defaultValue = "10") Integer limit) {
-        Page<News> pages = new Page((long) page, (long) limit);
-        Page<News> page1 = this.newsService.page(pages);
+        QueryWrapper<News> queryWrapper = new QueryWrapper<>();
+        Page<News> newsPage = this.newsService.page(new Page(page, limit),queryWrapper);
         LayerData<News> data = new LayerData();
-        data.setData(page1.getRecords());
-        data.setCount(page1.getTotal());
-        data.setCurr(page1.getCurrent());
+        data.setData(newsPage.getRecords());
+        data.setCount(newsPage.getTotal());
+        data.setCurr(newsPage.getCurrent());
         return data;
     }
 

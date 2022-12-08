@@ -71,14 +71,14 @@ body{
     width: 900px;
     height: 40px;
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
     margin: auto;
 }
 .bottom_t_a{
     display: block;
-    width: 150px;
+    /*width: 150px;*/
     color: black;
     cursor: pointer;
     text-decoration: none;

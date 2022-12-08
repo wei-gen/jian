@@ -16,13 +16,17 @@
         <div class="layui-inline">
             <label class="layui-form-label">标题</label>
             <div class="layui-input-block">
-                <textarea name="title" class="layui-textarea" style="width: 500px; height: 80px"></textarea>
+                <textarea name="title" class="layui-textarea" style="width: 500px; height: 80px">${bean.title}</textarea>
             </div>
         </div>
+
+    </div>
+    <div class="layui-form-item">
+        <textarea id="contentId" name="content" style="display: none;" value="${bean.content}"></textarea>
         <div class="layui-inline">
             <label class="layui-form-label">项目名称</label>
             <div class="layui-input-block">
-                <textarea name="name" class="layui-textarea" style="width: 500px; height: 80px"></textarea>
+                <div id="contentDivId" ></div>
             </div>
         </div>
     </div>
@@ -34,6 +38,8 @@
     </div>
 </form>
 <script type="text/javascript" src="${base}/static/layui/layui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/wangeditor@latest/dist/wangEditor.min.js"></script>
+
 <script>
     layui.use(['form','jquery','layer'],function(){
        var form = layui.form,
@@ -64,8 +70,17 @@
             });
             return false;
         });
-
     });
+    var content = document.getElementById("contentId");
+    const E = window.wangEditor
+    const editor = new E('#contentDivId')
+    editor.config.height = 500
+    editor.config.onchange = function (html) {
+        // 监控变化，同步更新富文本内容到 textarea
+        content.value = html;
+    }
+    editor.create();
+    editor.txt.html(`${bean.content}`)
 </script>
 </body>
 </html>
