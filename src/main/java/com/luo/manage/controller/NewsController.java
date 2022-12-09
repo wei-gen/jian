@@ -25,7 +25,11 @@ public class NewsController {
     @Autowired
     private NewsService newsService;
 
-    public NewsController() {
+    @GetMapping({"/detail/{id}"})
+    public String detail(Model model, @PathVariable Long id) {
+        News news = this.newsService.getById(id);
+        model.addAttribute("bean", news);
+        return "/news/detail";
     }
 
     @GetMapping({"/list"})

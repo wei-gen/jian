@@ -1,7 +1,11 @@
 package com.luo.manage.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.luo.manage.base.R;
+import com.luo.manage.entity.News;
 import com.luo.manage.entity.Project;
+import com.luo.manage.service.NewsService;
 import com.luo.manage.service.ProjectService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,61 +22,61 @@ public class TunnanPageController {
     @Autowired
     private ProjectService projectService;
     @Autowired
-    private Environment environment;
-
-    public TunnanPageController() {
-    }
+    private NewsService newsService;
 
     @GetMapping({"/", "/index"})
     public String index1(Model model) {
-        String[] activeProfiles = this.environment.getActiveProfiles();
-        return activeProfiles[0].equals("tunan") ? "/tunan/index" : "/dingwei/index";
+
+        QueryWrapper<Project> q1 = new QueryWrapper<>();
+        q1.orderByDesc("create_time");
+        Page<Project> projectPage = this.projectService.page(new Page<>(1, 7), q1);
+        QueryWrapper<News> q2 = new QueryWrapper<>();
+        q2.orderByDesc("create_time");
+        Page<News> newsPage = this.newsService.page(new Page<>(1, 7), q2);
+
+        model.addAttribute("projectList",projectPage.getRecords());
+        model.addAttribute("newsList",newsPage.getRecords());
+
+        return "/tunan/index";
     }
 
     @GetMapping({"/business"})
     public String business(Model model) {
         List<Project> list = this.projectService.list();
         model.addAttribute("list", list);
-        String[] activeProfiles = this.environment.getActiveProfiles();
-        return activeProfiles[0].equals("tunan") ? "/tunan/business" : "/dingwei/business";
+        return "/tunan/business";
     }
 
     @GetMapping({"/businessDetail/{id}"})
     public String businessDetail(Model model, @PathVariable Long id) {
         Project byId = (Project)this.projectService.getById(id);
         model.addAttribute("bean", byId);
-        String[] activeProfiles = this.environment.getActiveProfiles();
-        return activeProfiles[0].equals("tunan") ? "/tunan/businessDetail" : "/dingwei/businessDetail";
+        return "/tunan/businessDetail";
     }
 
     @GetMapping({"/intro"})
     public String intro(Model model) {
-        String[] activeProfiles = this.environment.getActiveProfiles();
-        return activeProfiles[0].equals("tunan") ? "/tunan/intro" : "/dingwei/intro";
+        return "/tunan/intro";
     }
 
     @GetMapping({"/team"})
     public String team(Model model) {
-        String[] activeProfiles = this.environment.getActiveProfiles();
-        return activeProfiles[0].equals("tunan") ? "/tunan/team" : "/dingwei/team";
+        return "/tunan/team";
     }
 
     @GetMapping({"/contact"})
     public String contact(Model model) {
-        String[] activeProfiles = this.environment.getActiveProfiles();
-        return activeProfiles[0].equals("tunan") ? "/tunan/contact" : "/dingwei/contact";
+        return "/tunan/contact";
     }
 
     @GetMapping({"/listpage"})
     public String listpage(Model model) {
-        String[] activeProfiles = this.environment.getActiveProfiles();
-        return activeProfiles[0].equals("tunan") ? "/tunan/list" : "/dingwei/list";
+        return "/tunan/list";
     }
 
     @GetMapping({"/addpage"})
     public String addpage(Model model) {
-        String[] activeProfiles = this.environment.getActiveProfiles();
-        return activeProfiles[0].equals("tunan") ? "/tunan/add" : "/dingwei/add";
+        return "/tunan/add";
     }
 
     @RequestMapping({"/list"})

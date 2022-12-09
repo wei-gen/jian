@@ -28,6 +28,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
     public WebMvcConfigurer() {
     }
 
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler(new String[]{"/static/**"}).addResourceLocations(new String[]{"classpath:/static/"});
         super.addResourceHandlers(registry);
@@ -41,6 +42,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
         return registration;
     }
 
+    @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         super.configureMessageConverters(converters);
         List<MediaType> supportedMediaTypes = new ArrayList();
@@ -73,7 +75,7 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
     }
 
 
-
+    @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**").allowedOrigins(new String[]{"*"}).allowedMethods(new String[]{"*"}).allowedHeaders(new String[]{"*"}).allowCredentials(true).exposedHeaders(new String[]{"Set-Cookie"}).maxAge(3600L);
     }

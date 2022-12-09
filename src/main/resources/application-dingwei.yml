@@ -67,7 +67,9 @@ file:
   uploadFolder: D:/resources/upload/
   staticAccessPath:  /upload/**
 
-#logging:
-#  config: classpath:log/logback.xml
-#  path: E:\logs
-#  level: debug
+company: 深圳市鼎维环保科技有限公司
+companyAddres: 深圳市宝安区松岗街道中海西岸华府南区6栋AB单元2H
+email: 493359327@qq.com
+phone: 15622202701
+icp1: 粤ICP备2022060728号
+icp2: 44031102000756

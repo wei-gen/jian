@@ -3,6 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <title>${company}</title>
     <link rel="stylesheet" type="text/css" href="/static/css/all.css">
     <link rel="stylesheet" type="text/css" href="/static/css/business.css">
     <link rel="stylesheet" type="text/css" href="/static/layui/css/layui.css">

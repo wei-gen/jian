@@ -67,7 +67,9 @@ file:
   uploadFolder: D:/resources/upload/
   staticAccessPath:  /upload/**
 
-#logging:
-#  config: classpath:log/logback.xml
-#  path: E:\logs
-#  level: debug
+company: 深圳图南环保技术有限公司
+companyAddres: 深圳市南山区南头街道田厦社区学府路桃苑公寓22号-1桃苑公寓338
+email: 865872583@qq.com
+phone: 13553992423
+icp1: 粤ICP备2022054595号
+icp2: 44030502009034

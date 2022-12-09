@@ -54,9 +54,8 @@ public class ProjectController {
     @RequestMapping({"/save"})
     @ResponseBody
     public R save(Project project) {
-        SimpleDateFormat simpleFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         if (project.getCreateTime() == null) {
-            project.setCreateTime(simpleFormatter.format(new Date()));
+            project.setCreateTime(new Date());
         }
         if (StrUtil.isBlank(project.getTitle())
                 || StrUtil.isBlank(project.getName())

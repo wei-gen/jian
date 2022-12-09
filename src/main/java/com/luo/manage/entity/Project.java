@@ -5,6 +5,7 @@
 
 package com.luo.manage.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class Project {
     private String site;
     private String deadline;
     private String url;
-    private String createTime;
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
 
 }

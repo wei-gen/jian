@@ -9,6 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="${base}/static/layui/css/layui.css" media="all" />
+    <title>${company}</title>
 </head>
 <body class="childrenBody">
 <form class="layui-form" style="width:80%;" id="fm">
